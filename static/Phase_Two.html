@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+    <script src="min1.js"></script>
+    <meta charset="utf-8">
+    <title>Phase_Two</title>
+  </head>
+  <body>
+    <label for="cipher">Ent1 :</label>
+    <label for="" id="cipher"></label><br>
+    <label for="">Key2(ent1 XOR key) :</label>
+    <label for="" id="key_1"></label><br>
+    <label for="">Msg :</label>
+    <label for=""id="or_text"></label><br>
+    <label for="">Inv_Msg :</label>
+    <label for="" id="inv_msg"></label><br>
+    <label for="">MAC :</label>
+    <label for=""id="mac"></label><br>
+    <button id="receiver_Data"type="button" name="button">Send</button>
+  </body>
+
+  <script type="text/javascript">
+  var key2;
+  var mac;
+  function getURLdata(name){
+           return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+           }
+  $(document).ready(function(){
+    //var main_data = getURLdata('ent1');
+    ent1 = getURLdata('ent1');
+    key1 = getURLdata('key1');
+    mesg = getURLdata('mesg');
+    input_data = {'ent1':ent1,'key1':key1,'mesg':mesg};
+    $.get('../genMac',input_data,function(data,status){
+      var result=JSON.parse(data);
+      key2 = result['key2'];
+      var InvMsg = result['InvMsg'];
+      mac = result['mac'];
+      $("#cipher").text(ent1);
+      $("#key_1").text(key2);
+      $("#or_text").text(mesg);
+      $("#inv_msg").text(InvMsg);
+      $("#mac").text(mac);
+      //console.log(result['key2'],result['InvMsg'],result['mac']);
+    });
+});
+function pageRedirect() {
+   //Values = {"Ent1":cipher_data,"key1":ckey,"mesg":msg};
+   window.location.href="Receiver.html?skey2="+key2+"&smac="+mac;
+}
+  $("#receiver_Data").click(function(){
+    //var skey2 = key2;
+    //var smac = mac;
+    setTimeout("pageRedirect()", 100);
+  });
+
+  </script>
+</html>

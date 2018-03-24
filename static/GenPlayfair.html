@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+    <script src="min.js"></script>
+    <meta charset="utf-8">
+    <title>Generate Play Fair</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style>
+    #box_show{
+        border-radius: 25%;
+        background-color: black;
+        width: 800px;
+        height: 650px;
+        border: 15px solid green;
+        padding: 20px;
+        box-shadow: 10px 10px 5px #AAAAAA;
+        margin: 25px;
+    }
+    #display{
+      color:white;
+    }
+    table,tr,td{
+      border: 1px solid white;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    .disp{
+      width: 30%;
+         padding: 1em;
+         border: 1px solid #c9e6ff;
+    }
+    .btn{
+      background-color: grey;
+      border: none;
+      color: white;
+      width:20%;
+      padding: 12px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+    </style>
+  </head>
+  <body>
+    <center>
+    <div id="box_show">
+      <div>
+        <label><strong style="color:white">Key To Generate Play Fair:</strong></label>
+        <input class="disp" id="key_box" type="text" name="palyfair" value="" placeholder="Enter Your Key">
+        <input class="disp" id="Text_Msg" type="text" name="msg" value="" placeholder="Enter Your Message"><br>
+        <button id="gen_Table" class="btn">GenTable</button>
+        <button id="cipher_Text" class="btn">Encryption</button>
+      </div>
+      <br>
+      <table id="display">
+      </table><br>
+      <label style="color:white">(Ent1)Cipher Text :</label>
+      <label style="color:white" id="Msg_cipher"></label><br>
+      <label style="color:white">Binary Format :</label>
+      <label style="color:white" id="binary_format"></label><br>
+      <button id="send_Values" class="btn">SendValues</button>
+      </div>
+      </center>
+  </body>
+  <script type="text/javascript">
+        var cipher_data;
+        var ckey;
+        var msg;
+        var Values;
+        $("#gen_Table").click(function(){
+      //alert("Button click ");
+      var key = $("#key_box").val();
+      $.get('../genPlayfair?cipher_key='+key,function(data,status){
+        var list = JSON.parse(data);
+        var count =0;
+        var table_data="<tr>";
+        for (var i = 0; i < list.length; i++) {
+          if(count == 16){
+            table_data = table_data + '</tr><tr>';
+            count=0;
+          }
+          table_data = table_data + '<td>'+list[i]+'</td>';
+          count++;
+          //console.log(list[i]);
+        }
+        table_data = table_data+'</tr>';
+        //console.log(table_data);
+        $("#display").html(table_data);
+      });
+    });
+    $("#cipher_Text").click(function(){
+      msg = $("#Text_Msg").val();
+      ckey = $("#key_box").val();
+      details = {'c_key':ckey,'txt_msg':msg}
+      $.get('../genCipher',details,function(data,status){
+        //console.log(data);
+        all_data = JSON.parse(data);
+        cipher_data = all_data['cipher_text'];
+        binary_data = all_data['binary_text'];
+        $("#Msg_cipher").text(cipher_data);
+        $("#binary_format").text(binary_data);
+        });
+    });
+
+    function pageRedirect() {
+       //Values = {"Ent1":cipher_data,"key1":ckey,"mesg":msg};
+       window.location.href="Phase_Two.html?ent1="+cipher_data+"&key1="+ckey+"&mesg="+msg;
+}
+//console.log(all_data['cipher_text']);
+      $("#send_Values").click(function(){
+      setTimeout("pageRedirect()", 100);
+      //console.log(Values);
+    });
+  </script>
+  </html>

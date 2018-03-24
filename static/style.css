@@ -1,0 +1,119 @@
+.text_box{
+  width: 30%;
+     padding: 1em;
+     border: 1px solid #c9e6ff;
+}
+.box1{
+    border-radius: 25%;
+    background-color: black;
+    width: 700px;
+    height: 500px;
+    border: 15px solid green;
+    padding: 20px;
+    box-shadow: 10px 10px 5px #AAAAAA;
+    margin: 25px;
+}
+.box{
+    border-radius: 20%;
+    background-color:#5F9EA0 ;
+    width: 250px;
+    height: 200px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 10px;
+    text-decoration: none;
+  }
+
+  #css_button{
+    background-color: grey;
+    border: none;
+    color: white;
+    width:35%;
+    padding: 25px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  #css_buttons1{
+    background-color: grey;
+    border: none;
+    color: white;
+    width:15%;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  #box_show{
+      border-radius: 25%;
+      background-color: black;
+      width: 700px;
+      height: 600px;
+      border: 15px solid green;
+      padding: 20px;
+      box-shadow: 10px 10px 5px #AAAAAA;
+      margin: 25px;
+  }
+  #text_view{
+    color:white;
+  }
+#right{
+  position: absolute;
+  right: 300px;
+}
+#left{
+  position:absolute;
+  rigth: 800px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.box4{
+  border-radius: 20%;
+  background-color:#5F9EA0 ;
+  width: 450px;
+  height: 30px;
+  border: 8px solid green;
+  padding: 40px;
+  text-decoration: none;
+  margin-bottom: 30px;
+  top: 200px;
+  }
+.box2{
+  border-radius: 20%;
+  background-color:#5F9EA0 ;
+  width: 180px;
+  height: 30px;
+  border: 8px solid green;
+  padding: 40px;
+  text-decoration: none;
+  margin-bottom: 30px;
+  top: 220px;
+  }
+  .box3{
+    border-radius: 20%;
+    background-color:#5F9EA0 ;
+    width: 180px;
+    height: 80px;
+    border: 8px solid green;
+    padding: 40px;
+    text-decoration: none;
+    margin-bottom: 30px;
+    top:350px;
+  }
+/* Transformation Efffects*/
+.polarand_right{
+  box-shadow: 10px 10px 5px #AAAAAA;
+  float:1eft;
+  -ms-transform:rotate(7deg);
+  -webkit-transform:rotate(7deg);
+  transform: rotate(7deg);
+}
+.polarand_left{
+  box-shadow: 10px 10px 5px #AAAAAA;
+  float:1eft;
+  -ms-transform:rotate(-8deg);
+  -webkit-transform:rotate(-8deg);
+  transform: rotate(-8deg);
+}

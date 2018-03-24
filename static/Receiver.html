@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="min1.js"></script>
+    <meta charset="utf-8">
+    <title>Reciver</title>
+  </head>
+  <body>
+    <label for="">Message :</label>
+    <input id ="txt_msg_comparision" type="text" name="" value="" placeholder="Enter Your Message">
+    <br>
+    <label for="">key2 :</label>
+    <label for=""id="s_key2"></label><br>
+    <label for="">Received_Mac :</label>
+    <label for="" id ="s_mac"></label><br>
+    <label for="">Generated_MAC :</label>
+    <label for="" id="r_mac"></label><br>
+    <button id="compare_Mac"type="button" name="button">Compare MAC'S</button>
+  </body>
+  <script type="text/javascript">
+  var skey2='';
+  var smac='';
+  function getURLdata(name){
+           return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+           }
+
+           $(document).ready(function(){
+             //var main_data = getURLdata('ent1');
+             skey2 = getURLdata('skey2');
+             smac = getURLdata('smac');
+             //input_data = {'skey2':key2,'smac':rmac};
+             $("#s_key2").text(skey2);
+             $("#s_mac").text(smac);
+          });
+        $("#compare_Mac").click(function(){
+          var cMsg = $("#txt_msg_comparision").val();
+          details = {'sMsg':cMsg,'skey2':skey2,'smac':smac}
+          $.get('../genComparisonMac',details,function(data,status){
+            var list = JSON.parse(data);
+            $("#r_mac").text(list['rmac']);
+            alert(list['status_msg']);
+            });
+        });
+  </script>
+</html>
