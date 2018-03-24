@@ -1,0 +1,6 @@
+flask:-python frame work(lite weigth server):
+	to install flask use the below command in cmd:
+	--->	pip install flask
+	--->    python 3.6.4
+	--->	browser
+	
